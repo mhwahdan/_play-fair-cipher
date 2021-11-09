@@ -2,11 +2,21 @@
 
 namespace play_fair_cipher
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            var cipher = new PlayFairCipher("monarchy");
+            foreach (var row in cipher.Key)
+            {
+                foreach (var column in row)
+                {
+                    Console.Write(column);
+                }
+                Console.Write("\n");
+            }
+            Console.WriteLine(cipher.Encrypt("instruments"));
+            Console.WriteLine(cipher.Decrypt("GATLMZCLRQTX"));
         }
     }
 }
