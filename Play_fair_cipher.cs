@@ -14,7 +14,7 @@ namespace play_fair_cipher
         private static char[][] generate_key(string key)
         {
             var output = new char[5][];
-            key = key.ToUpper().Replace("J","K");
+            key = key.ToUpper().Replace("J","I");
             for (var k = 0; k < 5; k++)
                 output[k] = new char[5];
             var iterator = 0;
@@ -31,7 +31,6 @@ namespace play_fair_cipher
                         break;
                     }
                     iterator++;
-
                 }
                 if (flag)
                     break;
@@ -58,8 +57,6 @@ namespace play_fair_cipher
         private static List<string> Split(string text)
         {
             var strings = new List<string>();
-            if(text.Length % 2 != 0)
-                text += bogus_character;
             for(int i = 0; i < text.Length; i += 2)
                 if(i == text.Length -1 || text[i] == text[i + 1])
                 {
@@ -70,23 +67,20 @@ namespace play_fair_cipher
                     strings.Add(
                         text[i] + text[i + 1].ToString()
                     );
-            string last = strings[^1];
-            if(last == "XX")
-                strings.Remove(last);
             return strings;
         }
         
-        private static int[] GetIndex(char key, IReadOnlyList<char[]> matrix)
+        private static int[] GetIndex(char key, char[][] matrix)
         {
             int[] output = {-1, -1};
             for(var i = 0; i < 5; i++)
-            for(var j = 0; j < 5; j++)
-                if(key == matrix[i][j])
-                {
-                    output[0] = i;
-                    output[1] = j;
-                    return output;
-                }
+                for(var j = 0; j < 5; j++)
+                    if(key == matrix[i][j])
+                    {
+                        output[0] = i;
+                        output[1] = j;
+                        return output;
+                    }
             return output;
         }
         

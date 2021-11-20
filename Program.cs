@@ -11,7 +11,7 @@ namespace play_fair_cipher
             {
                 foreach (var column in row)
                 {
-                    Console.Write(column);
+                    Console.Write(column.ToString() + ' ');
                 }
                 Console.Write("\n");
             }
